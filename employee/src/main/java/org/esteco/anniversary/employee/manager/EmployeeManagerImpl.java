@@ -1,39 +1,36 @@
 package org.esteco.anniversary.employee.manager;
 
 import org.esteco.anniversary.employee.Employee;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.stereotype.Component;
 
-import javax.transaction.Transactional;
+import org.springframework.stereotype.Repository;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
-@Component
-@Transactional
+@Repository
 public class EmployeeManagerImpl implements EmployeeManager {
 
-    private SessionFactory sessionFactory;
-
-    public EmployeeManagerImpl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
-    @Transactional
-    public int save(Employee emp) {
-        Session session = sessionFactory.openSession();
-        int id = (int) session.save(emp);
-        session.close();
-        return id;
+    public void save(Employee emp) {
+        entityManager.persist(emp);
+
     }
 
     @Override
     public Employee get(int empId) {
-        return null;
+
+        return entityManager.find(Employee.class,empId);
+
     }
 
     @Override
     public List<Employee> getAll() {
-        return null;
+        TypedQuery<Employee> selectAllQuery = entityManager.createQuery("from Employee", Employee.class);
+        return selectAllQuery.getResultList();
     }
 }
