@@ -8,7 +8,7 @@ import java.util.List;
 
 @Component
 @Transactional
-public interface EmployeeManager {
+public interface EmployeeDAO {
 
     void save(Employee emp);
 

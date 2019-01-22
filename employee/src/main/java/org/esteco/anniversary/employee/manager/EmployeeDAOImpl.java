@@ -9,7 +9,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-public class EmployeeManagerImpl implements EmployeeManager {
+public class EmployeeDAOImpl implements EmployeeDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
