@@ -4,14 +4,11 @@ import org.esteco.anniversary.TestConfig;
 import org.esteco.anniversary.employee.Employee;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
-
-import javax.transaction.Transactional;
-
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class EmployeeManagerImplTCase extends TestConfig {
 
@@ -22,16 +19,10 @@ public class EmployeeManagerImplTCase extends TestConfig {
     public void testSaveEmployee() {
         Employee employee = new Employee();
         employee.setEmail("jaiswal@esteco.com");
-      
         manager.save(employee);
 
-        assertEquals(1,1);
-    }
-
-    @Test
-    public void testGetAllEmployees() {
         List<Employee> employees = manager.getAll();
 
-        assertTrue(employees.size()>0);
+        assertEquals(1, employees.size());
     }
 }

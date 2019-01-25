@@ -108,6 +108,13 @@
             <version>8.0.13</version>
         </dependency>
 
+        <!-- hsql-connector-java -->
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.2.8</version>
+        </dependency>
+
     </dependencies>
 
     <build>

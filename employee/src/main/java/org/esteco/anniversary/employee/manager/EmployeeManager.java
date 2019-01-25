@@ -12,7 +12,6 @@ public interface EmployeeManager {
 
     void save(Employee emp);
 
-
     Employee get(int empId);
 
     List<Employee> getAll();

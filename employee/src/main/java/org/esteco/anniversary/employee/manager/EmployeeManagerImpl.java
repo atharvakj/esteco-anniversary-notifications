@@ -23,7 +23,6 @@ public class EmployeeManagerImpl implements EmployeeManager {
 
     @Override
     public Employee get(int empId) {
-
         return entityManager.find(Employee.class,empId);
 
     }
