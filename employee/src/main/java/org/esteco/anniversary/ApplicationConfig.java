@@ -70,3 +70,4 @@ public class ApplicationConfig {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 }
+
