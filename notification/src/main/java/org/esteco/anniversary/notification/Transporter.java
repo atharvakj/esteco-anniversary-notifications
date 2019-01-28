@@ -25,7 +25,7 @@ public class Transporter {
         Authenticator auth = new Authenticator() {
             //override the getPasswordAuthentication method
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(email.getFrom(), "ajaiswal");
+                return new PasswordAuthentication(email.getFrom(), "");
             }
         };
 
