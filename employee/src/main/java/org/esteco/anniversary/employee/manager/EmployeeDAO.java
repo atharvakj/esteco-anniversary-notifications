@@ -1,5 +1,6 @@
 package org.esteco.anniversary.employee.manager;
 
+import org.esteco.anniversary.EstecoAnniversaryException;
 import org.esteco.anniversary.employee.Employee;
 import org.springframework.stereotype.Component;
 
@@ -8,10 +9,9 @@ import java.util.List;
 
 @Component
 @Transactional
-public interface EmployeeManager {
+public interface EmployeeDAO {
 
-    void save(Employee emp);
-
+    void save(Employee emp) throws EstecoAnniversaryException;
 
     Employee get(int empId);
 

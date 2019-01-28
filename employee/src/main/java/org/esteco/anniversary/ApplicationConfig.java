@@ -1,11 +1,11 @@
 package org.esteco.anniversary;
 
-import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -26,15 +26,15 @@ public class ApplicationConfig {
 
     @Bean(name="dataSource")
     public DataSource dataSource(){
-        BasicDataSource dataSource = new BasicDataSource();
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/esteco");
         dataSource.setUsername("root");
-        dataSource.setPassword("ath@678AT");
+        dataSource.setPassword("admin");
         return dataSource;
     }
 
-    @Bean
+    @Bean(name="jpaVendorAdapter")
     public JpaVendorAdapter jpaVendorAdaptor(){
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
         adapter.setDatabasePlatform("org.hibernate.dialect.MySQL5Dialect");
@@ -44,19 +44,15 @@ public class ApplicationConfig {
         return adapter;
     }
 
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(
-            DataSource dataSource, JpaVendorAdapter jpaVendorAdapter){
-
+    @Bean(name="entityManagerFactory")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, JpaVendorAdapter jpaVendorAdapter){
         Properties prop = new Properties();
         prop.setProperty("hibernate.format_sql",String.valueOf(true));
-
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         emf.setDataSource(dataSource);
         emf.setJpaVendorAdapter(jpaVendorAdapter);
         emf.setJpaProperties(prop);
         emf.setPackagesToScan("org.esteco.anniversary");
-
         return emf;
     }
 
