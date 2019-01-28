@@ -28,16 +28,13 @@ public class BirthdayNotification implements Notification {
 
     @Override
     public void notify(List<Employee> employees) {
-        //employees.stream().map(mapToEmail()).forEach(Transporter::transport);
+        pickEmployees(employees).stream().map(mapToEmail()).forEach(Transporter::transport);
     }
 
     private Function<Employee, Email> mapToEmail() {
         return employee -> Email.builder().to(employee.getEmail())
                 .subject("Happy Birthday " + employee.getName())
-                .body(getBody(employee)).build();
-    }
-
-    private String getBody(Employee employee) {
-        return null;
+                .type("birthday")
+                .build();
     }
 }

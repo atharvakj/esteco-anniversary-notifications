@@ -8,9 +8,14 @@ public class Email {
     private String cc;
     private String bcc;
     private String subject;
+    private String type;
 
     public String getSubject() {
         return subject;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public void setSubject(String subject) {
@@ -92,6 +97,10 @@ public class Email {
             return this;
         }
 
+        public Builder type(String type) {
+            instance.type = type;
+            return this;
+        }
         public Email build(){
             return instance;
         }
