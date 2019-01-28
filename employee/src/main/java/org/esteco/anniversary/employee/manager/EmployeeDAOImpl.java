@@ -1,5 +1,6 @@
 package org.esteco.anniversary.employee.manager;
 
+import org.esteco.anniversary.EstecoAnniversaryException;
 import org.esteco.anniversary.employee.Employee;
 import org.springframework.stereotype.Repository;
 
@@ -15,13 +16,18 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     private EntityManager entityManager;
 
     @Override
-    public void save(Employee emp) {
-        entityManager.persist(emp);
+    public void save(Employee employee) throws EstecoAnniversaryException {
+        if (employee != null) {
+            entityManager.persist(employee);
+        }else {
+            throw new EstecoAnniversaryException("null is not a valid employee");
+        }
     }
 
     @Override
     public Employee get(int empId) {
-        return entityManager.find(Employee.class,empId);
+        return entityManager.find(Employee.class, empId);
+
     }
 
     @Override
