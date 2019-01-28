@@ -1,11 +1,11 @@
 package org.esteco.anniversary;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 
+import static org.junit.Assert.assertTrue;
+
 /**
- * Unit test for simple NotificationConfig.
+ * Unit test for simple AnniversaryConfig.
  */
 public class NotificationConfigTest
 {

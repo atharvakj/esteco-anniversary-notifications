@@ -1,5 +1,6 @@
 package org.esteco.anniversary;
 
+import org.esteco.anniversary.mail.Email;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

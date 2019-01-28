@@ -1,6 +1,7 @@
 package org.esteco.anniversary;
 
 import org.esteco.anniversary.employee.Employee;
+import org.esteco.anniversary.notification.BirthdayNotification;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -8,13 +9,13 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
-public class BirthDayNotificationTest {
+public class BirthdayNotificationTest {
 
     @Test
     public void testGetEmployeesWithBirthday() {
-        BirthDayNotification bdayNotif = new BirthDayNotification();
+        BirthdayNotification bdayNotif = new BirthdayNotification();
         Employee e1 = new Employee();
         e1.setBirthDate(new Date());
         Employee e2 = new Employee();

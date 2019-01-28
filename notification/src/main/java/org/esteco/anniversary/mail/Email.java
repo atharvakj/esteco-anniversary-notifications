@@ -1,4 +1,4 @@
-package org.esteco.anniversary;
+package org.esteco.anniversary.mail;
 
 public class Email {
 

@@ -1,4 +1,4 @@
-package org.esteco.anniversary;
+package org.esteco.anniversary.notification;
 
 import org.esteco.anniversary.employee.Employee;
 

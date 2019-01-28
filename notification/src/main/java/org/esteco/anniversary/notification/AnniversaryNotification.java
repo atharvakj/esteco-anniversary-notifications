@@ -1,4 +1,4 @@
-package org.esteco.anniversary;
+package org.esteco.anniversary.notification;
 
 import org.esteco.anniversary.employee.Employee;
 import org.joda.time.DateTime;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class AnniversaryNotification implements Notification{
+public class AnniversaryNotification implements Notification {
 
     @Override
     public void notify(List<Employee> employees) {

@@ -1,13 +1,17 @@
-package org.esteco.anniversary;
+package org.esteco.anniversary.notification;
 
 import org.esteco.anniversary.employee.Employee;
+import org.esteco.anniversary.mail.Email;
 import org.joda.time.DateTime;
 
-import java.util.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class BirthDayNotification implements Notification {
+public class BirthdayNotification implements Notification {
 
     private Predicate<Employee> isBirthDay() {
         return employee -> {
@@ -24,6 +28,16 @@ public class BirthDayNotification implements Notification {
 
     @Override
     public void notify(List<Employee> employees) {
+        //employees.stream().map(mapToEmail()).forEach(Transporter::transport);
+    }
 
+    private Function<Employee, Email> mapToEmail() {
+        return employee -> Email.builder().to(employee.getEmail())
+                .subject("Happy Birthday " + employee.getName())
+                .body(getBody(employee)).build();
+    }
+
+    private String getBody(Employee employee) {
+        return null;
     }
 }

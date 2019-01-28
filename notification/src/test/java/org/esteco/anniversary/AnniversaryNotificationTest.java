@@ -1,6 +1,7 @@
 package org.esteco.anniversary;
 
 import org.esteco.anniversary.employee.Employee;
+import org.esteco.anniversary.notification.AnniversaryNotification;
 import org.junit.Test;
 
 import java.util.ArrayList;
