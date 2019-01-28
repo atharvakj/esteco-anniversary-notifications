@@ -17,3 +17,4 @@ public interface EmployeeDAO {
 
     List<Employee> getAll();
 }
+

@@ -36,3 +36,4 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         return selectAllQuery.getResultList();
     }
 }
+
