@@ -17,14 +17,15 @@ public class AnniversaryNotificationTest {
     public void testGetEmployeesWhenJoiningAnniversary() {
         AnniversaryNotification annNotif = new AnniversaryNotification();
         Employee e1 = new Employee();
-        e1.setBirthDate(new Date());
+        Date joinDate = new Date();
+        e1.setJoinDate(joinDate);
         Employee e2 = new Employee();
-        e2.setBirthDate(new Date(1995,07,07));
+        e2.setJoinDate(new Date(1995, 07, 07));
         List<Employee> emps = new ArrayList<>();
         Collections.addAll(emps,e1,e2);
 
         List<Employee> pickedEmployees = annNotif.pickEmployees(emps);
 
-        assertTrue(pickedEmployees.get(0).getJoinDate().compareTo(new Date()) == 0);
+        assertTrue(pickedEmployees.get(0).getJoinDate().compareTo(joinDate) == 0);
     }
 }

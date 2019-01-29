@@ -25,8 +25,9 @@ public class AnniversaryNotification implements Notification {
     private Email mapToEmail(Employee employee) {
         return Email.builder()
                 .type("Anniversary")
-                .subject("Congratulations " + employee.getName() + " for completing " + serviceYears(employee) + "at Esteco")
+                .subject("Congratulations " + employee.getName() + " for completing " + serviceYears(employee) + " years at Esteco")
                 .to(employee.getEmail())
+                .from("jaiswal@esteco.com")
                 .build();
     }
 
@@ -34,7 +35,7 @@ public class AnniversaryNotification implements Notification {
         return employee -> {
             DateTime joinDate = new DateTime(employee.getJoinDate());
             GregorianCalendar calendar = new GregorianCalendar();
-            return calendar.get(Calendar.DAY_OF_MONTH) == joinDate.getDayOfMonth() && calendar.get(Calendar.YEAR) == joinDate.getYear();
+            return calendar.get(Calendar.DAY_OF_MONTH) == joinDate.getDayOfMonth() && calendar.get(Calendar.MONTH) + 1 == joinDate.getMonthOfYear();
         };
     }
 

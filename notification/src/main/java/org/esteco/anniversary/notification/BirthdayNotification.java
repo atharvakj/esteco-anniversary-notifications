@@ -35,6 +35,7 @@ public class BirthdayNotification implements Notification {
         return employee -> Email.builder().to(employee.getEmail())
                 .subject("Happy Birthday " + employee.getName())
                 .type("birthday")
+                .from("jaiswal@esteco.com")
                 .build();
     }
 }

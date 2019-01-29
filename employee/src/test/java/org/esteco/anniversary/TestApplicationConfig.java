@@ -11,7 +11,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import javax.sql.DataSource;
 
 @Configuration
-@Import(ApplicationConfig.class)
+@Import(EmployeeConfig.class)
 public class TestApplicationConfig {
 
     @Bean(name = "dataSource")

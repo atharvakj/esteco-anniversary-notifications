@@ -1,7 +1,8 @@
 package org.esteco.anniversary.notification;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.esteco.anniversary.mail.Email;
-import org.springframework.util.ResourceUtils;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
@@ -12,8 +13,6 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.util.Date;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Transporter {
 
@@ -45,7 +44,7 @@ public class Transporter {
             multipart.addBodyPart(bodyPart);
             //image
             bodyPart = new MimeBodyPart();
-            bodyPart.setDataHandler(new DataHandler(new FileDataSource(ResourceUtils.getFile("classpath:" + email.getType() + ".jpg"))));
+            bodyPart.setDataHandler(new DataHandler(new FileDataSource(Transporter.class.getClassLoader().getResourceAsStream(email.getType() + ".jpg").)));
             bodyPart.setHeader("Content-ID", "<image>");
             multipart.addBodyPart(bodyPart);
 
@@ -55,7 +54,7 @@ public class Transporter {
             System.out.println("Message is ready");
             Transport.send(msg);
         } catch (Exception e) {
-            Logger.getLogger(Transporter.class.getName()).log(Level.SEVERE, "Could not send email to " + email.getTo() + " for type " + email.getType());
+            Logger.getLogger(Transporter.class.getName()).log(Level.ERROR, "Could not send email to " + email.getTo() + " for type " + email.getType(), e);
         }
     }
 
