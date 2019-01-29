@@ -22,7 +22,7 @@ import java.util.Properties;
 @Configuration
 @ComponentScan(basePackages = "org.esteco.anniversary")
 @EnableTransactionManagement
-public class ApplicationConfig {
+public class EmployeeConfig {
 
     @Bean(name="dataSource")
     public DataSource dataSource(){
@@ -30,7 +30,7 @@ public class ApplicationConfig {
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/esteco");
         dataSource.setUsername("root");
-        dataSource.setPassword("admin");
+        dataSource.setPassword("ath@678AT");
         return dataSource;
     }
 
@@ -38,7 +38,7 @@ public class ApplicationConfig {
     public JpaVendorAdapter jpaVendorAdaptor(){
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
         adapter.setDatabasePlatform("org.hibernate.dialect.MySQL5Dialect");
-        adapter.setShowSql(true);
+        adapter.setShowSql(false);
         adapter.setDatabase(Database.MYSQL);
         adapter.setGenerateDdl(true);
         return adapter;
@@ -65,5 +65,5 @@ public class ApplicationConfig {
     public BeanPostProcessor persistanceTranslation(){
         return new PersistenceExceptionTranslationPostProcessor();
     }
-
 }
+
