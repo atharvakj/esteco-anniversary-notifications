@@ -17,7 +17,8 @@ public class BirthdayNotificationTest {
     public void testGetEmployeesWithBirthday() {
         BirthdayNotification bdayNotif = new BirthdayNotification();
         Employee e1 = new Employee();
-        e1.setBirthDate(new Date());
+        Date birthDate = new Date();
+        e1.setBirthDate(birthDate);
         Employee e2 = new Employee();
         e2.setBirthDate(new Date(1995,07,07));
         List<Employee> emps = new ArrayList<>();
@@ -25,6 +26,6 @@ public class BirthdayNotificationTest {
 
         List<Employee> employees = bdayNotif.pickEmployees(emps);
 
-        assertTrue(employees.get(0).getBirthDate().compareTo(new Date()) == 0);
+        assertTrue(employees.get(0).getBirthDate().compareTo(birthDate) == 0);
     }
 }

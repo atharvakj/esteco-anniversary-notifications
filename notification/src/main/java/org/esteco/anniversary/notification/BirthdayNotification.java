@@ -17,7 +17,7 @@ public class BirthdayNotification implements Notification {
         return employee -> {
             GregorianCalendar calender = new GregorianCalendar();
             DateTime empBirthDate = new DateTime(employee.getBirthDate());
-            return calender.get(Calendar.DAY_OF_MONTH) == empBirthDate.getDayOfMonth() && calender.get(Calendar.YEAR) == empBirthDate.getYear();
+            return calender.get(Calendar.DAY_OF_MONTH) == empBirthDate.getDayOfMonth() && calender.get(Calendar.MONTH) + 1 == empBirthDate.getMonthOfYear();
         };
     }
 

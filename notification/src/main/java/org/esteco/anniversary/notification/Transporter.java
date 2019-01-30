@@ -11,6 +11,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import java.io.*;
 import java.util.Date;
 import java.util.Properties;
 
@@ -23,7 +24,7 @@ public class Transporter {
         Authenticator auth = new Authenticator() {
             //override the getPasswordAuthentication method
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(email.getFrom(), "ajaiswal");
+                return new PasswordAuthentication(email.getFrom(), "");
             }
         };
 
@@ -44,7 +45,7 @@ public class Transporter {
             multipart.addBodyPart(bodyPart);
             //image
             bodyPart = new MimeBodyPart();
-            bodyPart.setDataHandler(new DataHandler(new FileDataSource(Transporter.class.getClassLoader().getResourceAsStream(email.getType() + ".jpg").)));
+            bodyPart.setDataHandler(new DataHandler(new FileDataSource(getAttachment(email))));
             bodyPart.setHeader("Content-ID", "<image>");
             multipart.addBodyPart(bodyPart);
 
@@ -56,6 +57,21 @@ public class Transporter {
         } catch (Exception e) {
             Logger.getLogger(Transporter.class.getName()).log(Level.ERROR, "Could not send email to " + email.getTo() + " for type " + email.getType(), e);
         }
+    }
+
+    private static File getAttachment(Email email) throws IOException {
+        File attachment = new File("./" + email.getType() + ".jpg");
+        if (!attachment.exists()) {
+            InputStream resourceAsStream = Transporter.class.getClassLoader().getResourceAsStream(email.getType() + ".jpg");
+            OutputStream outputStream = new FileOutputStream(attachment);
+            int read = 0;
+            byte[] bytes = new byte[1024];
+
+            while ((read = resourceAsStream.read(bytes)) != -1) {
+                outputStream.write(bytes, 0, read);
+            }
+        }
+        return attachment;
     }
 
     private static Properties getProperties() {
