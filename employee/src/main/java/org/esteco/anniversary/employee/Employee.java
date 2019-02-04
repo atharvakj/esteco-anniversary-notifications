@@ -8,9 +8,8 @@ import java.util.Date;
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "emp_id")
-    private int employeeId;
+    @Column(name = "emp_id", nullable = false, unique = true)
+    private String employeeId;
 
     @Column(name = "name")
     private String name;
@@ -27,11 +26,11 @@ public class Employee {
     @Column(name = "email")
     private String email;
 
-    public int getEmployeeId() {
+    public String getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(String employeeId) {
         this.employeeId = employeeId;
     }
 

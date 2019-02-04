@@ -13,7 +13,7 @@ public interface EmployeeDAO {
 
     void save(Employee emp) throws EstecoAnniversaryException;
 
-    Employee get(int empId);
+    Employee get(String empId);
 
     List<Employee> getAll();
 }

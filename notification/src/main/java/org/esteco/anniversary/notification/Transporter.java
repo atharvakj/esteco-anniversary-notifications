@@ -44,7 +44,7 @@ public class Transporter {
             multipart.addBodyPart(bodyPart);
             //image
             bodyPart = new MimeBodyPart();
-            bodyPart.setDataHandler(new DataHandler(new FileDataSource(Transporter.class.getClassLoader().getResourceAsStream(email.getType() + ".jpg").)));
+            //bodyPart.setDataHandler(new DataHandler(new FileDataSource(Transporter.class.getClassLoader().getResourceAsStream(email.getType() + ".jpg").)));
             bodyPart.setHeader("Content-ID", "<image>");
             multipart.addBodyPart(bodyPart);
 

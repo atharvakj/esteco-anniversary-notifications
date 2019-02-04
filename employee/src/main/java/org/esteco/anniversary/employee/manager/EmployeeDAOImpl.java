@@ -17,15 +17,15 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public void save(Employee employee) throws EstecoAnniversaryException {
-        if (employee != null) {
+        try {
             entityManager.persist(employee);
-        }else {
-            throw new EstecoAnniversaryException("null is not a valid employee");
+        } catch (Exception e) {
+            throw new EstecoAnniversaryException("Error occurred while saving employee", e);
         }
     }
 
     @Override
-    public Employee get(int empId) {
+    public Employee get(String empId) {
         return entityManager.find(Employee.class, empId);
 
     }
